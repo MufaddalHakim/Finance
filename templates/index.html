@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Symbol</th>
+      <th scope="col">Name</th>
+      <th scope="col">Shares</th>
+      <th scope="col">Price</th>
+      <th scope="col">Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for symbol in symbols %}
+    <tr>
+      {% if shareCount[symbol] > 0 %}
+        <td>{{ symbol }}</td><td>{{ company[symbols.index(symbol)] }}</td><td>{{ shareCount[symbol] }}</td><td>${{ prices[symbols.index(symbol)] }}</td><td>${{ shareTotal[symbols.index(symbol)] }}</td>
+      {% endif %}
+    </tr>
+    {% endfor %}
+    <tr>
+        <td>CASH</td> <td></td> <td></td> <td></td> <td>${{ cash }}</td>
+    </tr>
+    {% if total >= 10000 %}
+    <tr>
+        <td></td> <td></td> <td></td> <td></td> <td style='color:green'><b>${{ total }}</b></td>
+    </tr>
+    {% else %}
+    <tr>
+        <td></td> <td></td> <td></td> <td></td> <td style='color:red'><b>${{ total }}</b></td>
+    </tr>
+    {% endif %}
+  </tbody>
+</table>
+{% endblock %}
