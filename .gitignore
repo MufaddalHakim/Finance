@@ -1,3 +1,4 @@
 .env
 finance.db
 env/
+__pycache__/
